@@ -1,15 +1,12 @@
 import * as fs from 'fs'
 import { Household } from './types'
+import path from 'path'
 
 const stateFilePath = './data/state.json'
 const stateExists = fs.existsSync(stateFilePath)
-let oldState : any = null
-
-export function testGreeting () :void {
-    console.log("Hello from State Manager")
-}
 
 export function getOldState() {
+    let oldState :any = null
     if(stateExists){
         oldState = fs.readFileSync(stateFilePath, 'utf-8')
         oldState = JSON.parse(oldState)
@@ -26,11 +23,19 @@ export function updateState(newEnrolledHouseholds: Household[], oldEnrolledHouse
 
 export function writeState(enrolledHouseholds: Household[]) {
     try{
+        const dir = path.dirname(stateFilePath)
+        if(!fs.existsSync(dir)) {
+            fs.mkdirSync(dir)
+        }
+
+
+
         const newState = JSON.stringify(enrolledHouseholds)
         fs.writeFileSync(stateFilePath, newState)
     }
     catch(error) {
-        console.log(error)
+        console.log('Error writing state: ', error)
+        process.exit(1)
     }
     
 }

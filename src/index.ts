@@ -22,7 +22,8 @@ async function processFile(providedFilePath : string) {
         parsedCsv = await csvParser.loadAndParseCsv(providedFilePath)
     }
     catch(error) {
-        console.log(error)
+        console.log('Error parsing CSV: ', error)
+        process.exit(1)
     }
 
     //Process CSV File into Households

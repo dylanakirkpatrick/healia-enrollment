@@ -1,25 +1,20 @@
 import { EnrollementCsvRow, Household, Person } from "./types";
 
-export function testGreeting() {
-    console.log('hello from enrollment')
-}
-const allHouseholds: Household[] = []
-const enrolledHouseholds: Household[] = []
-
 export function processCsv(parsedCsv: EnrollementCsvRow[]): Household[] {
     //Populate households with persons from csv file process
+    const allHouseholds: Household[] = []
+    const enrolledHouseholds: Household[] = []
     parsedCsv.forEach((row) => {
-        populateHousehold(row)
+        populateHousehold(row, allHouseholds)
     })
 
     allHouseholds.forEach((household) => {
-        enrollHousehold(household)
+        enrollHousehold(household, enrolledHouseholds)
     })
-    
     return enrolledHouseholds
 }
 
-function populateHousehold(member : Person) {
+function populateHousehold(member : Person, allHouseholds: Household[]) {
     //builds all Household list based on provided persons in file
     //Build all household list before any sort of processing to allow for split household IDs in file
     const householdIndex = allHouseholds.findIndex(household => {
@@ -39,7 +34,7 @@ function populateHousehold(member : Person) {
 
 }
 
-function enrollHousehold(household: Household) {
+function enrollHousehold(household: Household, enrolledHouseholds: Household[]) {
     //determines if household is enrolled based on each household member status
 
     ///Enrollment Household Scenarios

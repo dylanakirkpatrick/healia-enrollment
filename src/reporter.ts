@@ -13,8 +13,9 @@ export function reporter(hasOldState :boolean , oldEnrolledHouseholds: Household
 
 function initialReporter(enrolledHouseholds: Household[]) {
     //output first time enrollment stats to console
+    const sortedHouseholds =enrolledHouseholds.sort((a,b) => a.id.localeCompare(b.id))
     console.log(`distinct_households_enrolled: ${enrolledHouseholds.length}`)
-    enrolledHouseholds.forEach((household) => {
+    sortedHouseholds.forEach((household) => {
         console.log(`${household.id},${household.employeeName}`)
     })
 }
@@ -25,7 +26,6 @@ function rerunReporter(newEnrolledHouseholds: Household[], oldEnrolledHouseholds
     const removedHouseIds: string[] = []
     newEnrolledHouseholds.forEach((household) => {
         if(!oldEnrolledHouseholds.find((oldHousehold) => {
-
             return oldHousehold.id == household.id
         })){
             newHouseIds.push(household.id)
@@ -44,11 +44,11 @@ function rerunReporter(newEnrolledHouseholds: Household[], oldEnrolledHouseholds
     console.log(`households_enrolled_curr: ${newEnrolledHouseholds.length}`)
     console.log(`net_change: ${newEnrolledHouseholds.length - oldEnrolledHouseholds.length}`)
     console.log(`added:`)
-    newHouseIds.forEach((householdId) => {
+    newHouseIds.sort().forEach((householdId) => {
         console.log(householdId)
     })
     console.log(`removed:`)
-    removedHouseIds.forEach((householdID) => {
+    removedHouseIds.sort().forEach((householdID) => {
         console.log(householdID)
     })
 }

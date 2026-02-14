@@ -1,0 +1,7 @@
+household_id,person_role,first_name,last_name,enrollment_status
+H002,employee,Boromir,Gondor,not_enrolled
+H003,employee,Aragorn,Elessar,enrolled
+H003,spouse,Arwen,Undómiel,enrolled
+H004,employee,Saruman,White,not_enrolled
+H001,employee,Frodo,Baggins,enrolled
+H001,dependent,Sam,Gamgee,enrolled
