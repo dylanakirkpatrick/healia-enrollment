@@ -4,15 +4,16 @@ import { EnrollementCsvRow } from './types'
 
 export async function loadAndParseCsv (filePath: string) {
 
-    if(!fs.existsSync(`./${filePath}`)){
+    if(!fs.existsSync(filePath)){
         console.error(`ERROR: No such file or directory exists: ./${filePath}`)
         process.exit(9)
     }
 
     const csvData : EnrollementCsvRow[] = []
 
+    //Extension idea: 
    return new Promise<EnrollementCsvRow[]>((resolve, reject) => {
-    fs.createReadStream(`./${filePath}`)
+    fs.createReadStream(filePath)
         .pipe(csvParser())
         .on('data', (row) => {
             csvData.push(row)

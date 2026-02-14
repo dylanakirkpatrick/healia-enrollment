@@ -3,11 +3,10 @@ import { Household } from './types'
 import path from 'path'
 
 const stateFilePath = './data/state.json'
-const stateExists = fs.existsSync(stateFilePath)
 
 export function getOldState() {
     let oldState :any = null
-    if(stateExists){
+    if(fs.existsSync(stateFilePath)){
         oldState = fs.readFileSync(stateFilePath, 'utf-8')
         oldState = JSON.parse(oldState)
     }
@@ -15,10 +14,6 @@ export function getOldState() {
         oldState = null
     }
     return oldState
-}
-
-export function updateState(newEnrolledHouseholds: Household[], oldEnrolledHouseholds: Household[]|null) {
-    writeState(newEnrolledHouseholds)
 }
 
 export function writeState(enrolledHouseholds: Household[]) {
