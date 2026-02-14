@@ -1,0 +1,5 @@
+household_id,person_role,first_name,last_name,enrollment_status
+H001,employee,Frodo,Baggins,enrolled
+H001,dependent,Sam,Gamgee,enrolled
+H002,employee,Boromir,Gondor,not_enrolled
+H004,employee,Saruman,White,not_enrolled
