@@ -22,7 +22,7 @@ export function writeState(enrolledHouseholds: Household[]) {
         if(!fs.existsSync(dir)) {
             fs.mkdirSync(dir)
         }
-        const newState = JSON.stringify(enrolledHouseholds)
+        const newState = JSON.stringify(enrolledHouseholds, null, 2)
         fs.writeFileSync(stateFilePath, newState)
     }
     catch(error) {
