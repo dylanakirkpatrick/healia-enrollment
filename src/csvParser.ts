@@ -5,7 +5,7 @@ import { EnrollementCsvRow } from './types'
 export async function loadAndParseCsv (filePath: string) {
 
     if(!fs.existsSync(filePath)){
-        console.error(`ERROR: No such file or directory exists: ./${filePath}`)
+        console.error(`ERROR: No such file or directory exists: ${filePath}`)
         process.exit(9)
     }
 
