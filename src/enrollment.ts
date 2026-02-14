@@ -37,6 +37,8 @@ function populateHousehold(member : Person, allHouseholds: Household[]) {
 function enrollHousehold(household: Household, enrolledHouseholds: Household[]) {
     //determines if household is enrolled based on each household member status
 
+    ///Extension idea: Complicated Enrollment Scenarios
+
     ///Enrollment Household Scenarios
     ///1: Both Person A and B are enrolled -> Household is enrolled
     ///2: Person A is enrolled, Person B is not enrolled -> Partial Enrollment Scenarios
@@ -60,9 +62,7 @@ function enrollHousehold(household: Household, enrolledHouseholds: Household[]) 
         //Household is enrolled, member is not enrolled -> household stays enrolled (Maybe 'partial' enrollment?)
         //Household is not enrolled, member is enrolled -> Household is enrolled (Maybe 'partial' enrollment?)
         //Household is not enrolled, member is not enrolled -> household stays not enrolled
-        //TODO: Revist: Should partial enrollment be considered?
-        //If so: Switch Case for different scenarios
-
+        
         householdEnrollmentStatus = householdEnrollmentStatus =='enrolled' ? householdEnrollmentStatus : member.enrollment_status
         if(member.person_role.toLowerCase() == 'employee' && member.enrollment_status.toLowerCase() == 'enrolled'){
             householdEmployee = member.first_name.concat(' ',member.last_name)

@@ -11,7 +11,7 @@ export async function loadAndParseCsv (filePath: string) {
 
     const csvData : EnrollementCsvRow[] = []
 
-    //Extension idea: 
+    
    return new Promise<EnrollementCsvRow[]>((resolve, reject) => {
     fs.createReadStream(filePath)
         .pipe(csvParser())
